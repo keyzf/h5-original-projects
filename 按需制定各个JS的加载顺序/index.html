@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按需制定各个JS的加载顺序</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo {
+            width: 800px;
+            background: #ebebeb;
+            border-radius: 10px;
+            margin: 10px auto;
+            padding: 15px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="demo">
+        <p>+ LABjs是一个能够根据我们自己需要制定各个JS加载顺序的库</p>
+        <p>+ 具体的github地址：https://github.com/getify/LABjs</p>
+        <p>+ 如进行预加载，再判断浏览器是否支持真正的预加载；如支持真正的预加载，则预加载之；如否，判断请求的脚本是否跟当前页面同域，如实，采用XHR Injection(通过ajax请求加载脚本），如否，采用Cache
+            Trick（以缓存暂存，需要用时换个标签就能设为正确的值）；</p>
+        <p>+ 如不进行预加载，判断浏览器支不支持script元素的async属性，如是，设置async属性，并请求脚本文件；如否，直接通过script元素加载脚本文件；</p>
+    </div>
+
+    <script src="./LAB.js"></script>
+    <script>
+        $LAB.script("a.js")
+            .script("b.js")
+            .script("c.js")
+            .wait(function () {
+                console.log('我是最后')
+            })
+    </script>
+</body>
+
+</html>
