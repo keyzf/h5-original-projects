@@ -6,14 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>变换莫测的this</title>
     <style>
-
+        .box {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 0;
+            background: red;
+        }
     </style>
 </head>
 
 <body>
-
+    <div class="box"></div>
     <script>
-        console.log(this)
+        let box = document.querySelector('.box')
+        box.onclick = move
+
+        function move() {
+            console.log(this)
+            setTimeout(function () {
+                console.log(this)
+            }, 1000)
+        }
     </script>
 </body>
 
