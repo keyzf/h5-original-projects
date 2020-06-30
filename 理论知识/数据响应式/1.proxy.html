@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据响应式</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <script>
+        let box = document.querySelector('.box')
+        var data = {
+            name: 'lili',
+            age: 20
+        }
+
+        // 数据拦截器
+        let p = new Proxy(data, {
+            set(target, prop, val) {
+                // 拦截JS操作的办法
+                return Reflect.set(...arguments)
+            },
+            get(target, prop) {
+                return Reflect.get(...arguments)
+            }
+        })
+
+        p.age = 21
+
+    </script>
+</body>
+
+</html>
