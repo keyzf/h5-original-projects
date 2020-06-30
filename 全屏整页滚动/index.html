@@ -6,14 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全屏整页滚动</title>
     <style>
-        .demo {
-            color: #fff;
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%, 0);
-            margin-top: 30px;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -59,17 +51,7 @@
 <body>
     <div id="wrap">
         <div id="main">
-            <div id="page1" class="page">
-                <div class="demo">
-                    <p>+ 全屏整页滚动的秘诀</p>
-                    <p>+ 按照普通页面的要求，制定四个全背景的容器，并将超过浏览器的内容隐藏起来</p>
-                    <p>+ 监听我们的滚动事件，向下滚动则向下滚动背景，反之则向上</p>
-                    <p>+ 得到我们每个屏幕的高度，并找到我们有多少个全屏页面</p>
-                    <p>+ 赋值到外层容器高度以及每个子页面的宽度</p>
-                    <p>+ 检测滚动的值，为正数则往上，负数则往下，超过大小不进行操作</p>
-                    <p>+ 固定要动画结束后才能进行下一次滚动</p>
-                </div>
-            </div>
+            <div id="page1" class="page"></div>
             <div id="page2" class="page"></div>
             <div id="page3" class="page"></div>
             <div id="page4" class="page"></div>
