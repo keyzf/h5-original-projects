@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视差效果</title>
+    <style>
+        .image {
+            width: 1920px;
+            height: 1080px;
+        }
+
+        .title {
+            position: fixed;
+            font-size: 55px;
+            color: #fff;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./pic.jpg" alt="" class="image">
+    <img src="./pic1.jpg" alt="" class="image">
+
+    <div class="title">ON DIET</div>
+
+    <script src="./simpleParallax.js"></script>
+    <script>
+        var image = document.getElementsByClassName('image')
+        new simpleParallax(image, {
+            orientation: 'right',
+            scale: 1.5,
+            transition: 'cubic-bezier(0,0,0,1)'
+        })
+    </script>
+</body>
+
+</html>
