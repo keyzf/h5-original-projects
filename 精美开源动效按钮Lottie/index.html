@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie 精美动效</title>
+    <style>
+        #lottie {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lottie"></div>
+
+
+    <script src="./lottie_canvas5.6.10.js"></script>
+
+    <script>
+        var animation = bodymovin.loadAnimation({
+            container: document.getElementById('lottie'), // Required
+            path: 'bell.json', // Required
+            renderer: 'canvas', // Required
+            loop: true, // Optional
+            autoplay: true, // Optional
+            name: "Hello World", // Name for future reference. Optional.
+        })
+
+        bodymovin.loadAnimation({
+            container: document.getElementById('lottie'), // Required
+            path: 'lemon.json', // Required
+            renderer: 'canvas', // Required
+            loop: true, // Optional
+            autoplay: true, // Optional
+            name: "Hello World", // Name for future reference. Optional.
+        })
+    </script>
+</body>
+
+</html>
