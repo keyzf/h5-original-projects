@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>交互视频</title>
     <style>
-        html {
+        html,
+        body {
             position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         #loading {
@@ -18,6 +21,11 @@
 
         #video {
             visibility: hidden;
+            transform: rotate(90deg);
+            position: fixed;
+            width: 100%;
+            object-fit: fill;
+            z-index: -1;
         }
 
         #btn1,
@@ -32,25 +40,32 @@
 </head>
 
 <body>
+    <button id="start">开始</button>
     <div id="loading">0%</div>
-    <video src="./image/video.mp4" controls muted id="video"></video>
+
+    <!-- webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" -->
+    <video src="http://img.cdn.funqgame.com/video/fengshen.mp4" id="video" preload="metadata"></video>
     <button id="btn1">继续</button>
     <button id="btn2">继续</button>
     <button id="btn3">继续</button>
+
+    <p id="a">dd</p>
 
     <script>
         // 加载内容
         function getBuffered() {
             let timer;
+            document.getElementById('video').pause()
 
             var update = () => {
-
                 var buffered = document.getElementById('video').buffered
+
                 // buffered.length 缓存的区间
                 if (buffered.length) {
                     // buffered.start(0) 第一个缓存开始的区域
                     // buffered.end(0) 第一个缓存结束的区域
                     // 获取当前缓冲进度
+                    // document.getElementById('a').innerHTML = loaded
                     var loaded = 100 * buffered.end(0) / document.getElementById('video').duration
 
                     video.currentTime = buffered.end(0)
@@ -67,37 +82,47 @@
                         document.getElementById("video").style.visibility = 'visible'
                         document.getElementById("loading").style.display = 'none'
                         video.play()
+
+                        // 检测什么时候需要暂停
+                        var id = 1;
+                        video.addEventListener('timeupdate', function () {
+                            if (Math.floor(video.currentTime) === 10 && id === 1) {
+                                video.pause()
+                                document.getElementById('btn1').style.display = 'block'
+                                id += 1
+                            }
+
+                            if (Math.floor(video.currentTime) === 20 && id === 2) {
+                                video.pause()
+                                document.getElementById('btn2').style.display = 'block'
+                                id += 1
+                            }
+
+                            if (Math.floor(video.currentTime) === 30 && id === 3) {
+                                video.pause()
+                                document.getElementById('btn3').style.display = 'block'
+                                id += 1
+                            }
+                        })
                     }
                 }
-
             }
 
             timer = setInterval(update, 50)
         }
 
-        getBuffered();
+        document.getElementById('a').innerHTML = 'sss'
 
-        // 检测什么时候需要暂停
-        var id = 1;
-        video.addEventListener('timeupdate', function () {
-            if (Math.floor(video.currentTime) === 10 && id === 1) {
-                video.pause()
-                document.getElementById('btn1').style.display = 'block'
-                id += 1
-            }
+        document.getElementById('start').addEventListener('click', function () {
+            document.getElementById('video').play()
+            // getBuffered();
+        });
 
-            if (Math.floor(video.currentTime) === 20 && id === 2) {
-                video.pause()
-                document.getElementById('btn2').style.display = 'block'
-                id += 1
-            }
+        document.getElementById('video').addEventListener('timeupdate', function () {
+            document.getElementById('a').innerHTML = document.getElementById('video').buffered.end(0)
+            // getBuffered();
+        });
 
-            if (Math.floor(video.currentTime) === 30 && id === 3) {
-                video.pause()
-                document.getElementById('btn3').style.display = 'block'
-                id += 1
-            }
-        })
 
         // 增加点击事件，继续播放
         document.getElementById('btn1').addEventListener('click', function () {

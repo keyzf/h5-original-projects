@@ -24,14 +24,21 @@
         </p>
     </video>
 
+    <p id="a"></p>
+
     <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
     <script>
         var player = videojs('my-video', {
             preload: 'auto',
             autoplay: true,
             controls: false,
-            poster: "./image/pic.jpg"
+            fluid: true,
+            poster: "./image/pic.jpg",
         })
+        player.ready(function () {
+            player.enterFullScreen()
+        })
+
     </script>
 </body>
 
