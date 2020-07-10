@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>视频自动加载播放</title>
 
-    <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
+    <link href="./image/video-js-7.8.4/video-js.css" rel="stylesheet" />
 
-    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <style>
+        .video-js {
+            transform: rotate(90deg);
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,7 +30,7 @@
 
     <p id="a"></p>
 
-    <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+    <script src="./image/video-js-7.8.4/video.js"></script>
     <script>
         var player = videojs('my-video', {
             preload: 'auto',
@@ -36,7 +40,7 @@
             poster: "./image/pic.jpg",
         })
         player.ready(function () {
-            player.enterFullScreen()
+            //player.enterFullScreen()
         })
 
     </script>
