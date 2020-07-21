@@ -39,20 +39,28 @@
 
             // 储存每行的高度
             var arr = []
-            for (var i = 0; i < 20; i++) {
+            for (var i = 0; i < child.length; i++) {
                 if (i < columns) {
                     child[i].style.top = 0
                     child[i].style.left = gap + (config._img_width + gap) * i + 'px'
-                    arr.push(child[i].offsetHeight)
-                    console.log(arr)
+                    arr.push(child[i].offsetHeight) // offsetHeight 在面对图片未加载完成的时候进行取值，得到的是0
                 } else {
+                    // 找到最小高度的列
+                    var minHei = arr[0]
+                    var index = 0
+                    for(var j=0;j<arr.length;j++){
+                        if(minHei > arr[j]){
+                            minHei = arr[j]
+                            index = j
+                        }
+                    }
+                    // 排入新的图片
+                    child[i].style.top = arr[index] + 10 + 'px'
+                    child[i].style.left = gap + (config._img_width + gap) * index + 'px'
 
+                    arr[index] = arr[index] + child[i].offsetHeight + gap
                 }
             }
-
-
-            // 找到最小高度的列
-            // 排入新的图片
         }
 
         function getPic() {
@@ -65,7 +73,6 @@
                 div.appendChild(img)
                 document.getElementById(config._container).appendChild(div)
             }
-            masonry(config)
         }
 
         function getClient() {
@@ -76,6 +83,9 @@
         }
 
         getPic()
+        window.onload = function(){
+            masonry(config)
+        }
         // masonry(config)
     </script>
 </body>
